@@ -1,3 +1,5 @@
+import { Copyright } from "lucide-react";
+
 export const translations = {
   es: {
     title: "Optimización de Rutas",
@@ -45,6 +47,7 @@ export const translations = {
     derivativeDesc: "Derivada: dC/dv = 2a·v - b/v² para encontrar extremos",
     optimizationDesc: "Optimización: Óptima = ∛(b/2a) minimiza el costo",
     restrictionDesc: "Restricción: Validación mediante desigualdades",
+    Copyright: "Airz-z © 2025 Todos los derechos reservados.",
   },
   en: {
     title: "Route Optimization",
@@ -91,5 +94,6 @@ export const translations = {
     derivativeDesc: "Derivative: dC/dv = 2a·v - b/v² to find extremes",
     optimizationDesc: "Optimization: Optimal = ∛(b/2a) minimizes cost",
     restrictionDesc: "Restriction: Validation through inequalities",
+    Copyright: "Airz-z © 2025 All rights reserved.",
   },
 };
