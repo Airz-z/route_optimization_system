@@ -97,11 +97,6 @@ const Results = ({ optimalSpeed, minCost, estimatedTime, maxTime, t }) => {
           </li>
         </ul>
       </div>
-      <div>
-        <p className="text-center text-xs text-gray-500 mt-4">
-          {t.Copyright}
-        </p>
-      </div>
     </div>
   );
 };

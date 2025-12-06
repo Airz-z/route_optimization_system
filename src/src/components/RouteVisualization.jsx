@@ -104,6 +104,9 @@ const RouteVisualization = ({ distance, optimalSpeed, priority, t }) => {
           {optimalSpeed.toFixed(0)} km/h
         </p>
       </div>
+      <div>
+        <p className="text-center text-xs text-gray-500 mt-4">{t.Copyright}</p>
+      </div>
     </div>
   );
 };
