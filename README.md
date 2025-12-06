@@ -180,11 +180,3 @@ Las contribuciones son bienvenidas. Por favor:
 3. Commit tus cambios
 4. Push a la rama
 5. Abre un Pull Request
-
-## 📄 Licencia
-
-MIT License - Ver archivo LICENSE para más detalles
-
----
-
-**Desarrollado con ❤️ usando React y Cálculo Diferencial**
