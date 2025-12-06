@@ -1,0 +1,363 @@
+/* index.css - Estilos globales y configuración de Tailwind */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================================
+   ESTILOS BASE
+   ============================================================================ */
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply m-0 p-0 font-sans antialiased;
+    @apply bg-gray-900 text-white;
+    @apply overflow-x-hidden;
+  }
+
+  #root {
+    @apply min-h-screen;
+  }
+
+  /* Inputs personalizados */
+  input[type="number"],
+  input[type="text"] {
+    @apply appearance-none;
+  }
+
+  /* Remover flechas de inputs numéricos en Chrome, Safari, Edge */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Remover flechas de inputs numéricos en Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  /* Scrollbar personalizada */
+  ::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-800;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-600 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-500;
+  }
+}
+
+/* ============================================================================
+   COMPONENTES PERSONALIZADOS
+   ============================================================================ */
+
+@layer components {
+  /* Cards */
+  .card {
+    @apply bg-gray-800 rounded-xl p-6 shadow-lg;
+    @apply border border-gray-700/50;
+    @apply transition-all duration-300;
+  }
+
+  .card:hover {
+    @apply border-gray-600/50 shadow-xl;
+  }
+
+  /* Inputs */
+  .input-field {
+    @apply w-full bg-gray-700 text-white rounded-lg px-4 py-2.5;
+    @apply border border-gray-600 outline-none;
+    @apply transition-all duration-200;
+    @apply focus:ring-2 focus:ring-orange-500 focus:border-transparent;
+    @apply placeholder:text-gray-400;
+  }
+
+  .input-field:hover {
+    @apply border-gray-500;
+  }
+
+  /* Labels */
+  .input-label {
+    @apply block text-sm font-medium text-gray-300 mb-2;
+    @apply transition-colors duration-200;
+  }
+
+  /* Botones primarios */
+  .btn-primary {
+    @apply px-6 py-3 bg-orange-500 text-white font-semibold rounded-lg;
+    @apply transition-all duration-200;
+    @apply hover:bg-orange-600 hover:shadow-lg hover:shadow-orange-500/30;
+    @apply active:scale-95;
+    @apply flex items-center justify-center gap-2;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Botones secundarios */
+  .btn-secondary {
+    @apply px-4 py-2 bg-gray-700 text-gray-200 font-medium rounded-lg;
+    @apply border border-gray-600;
+    @apply transition-all duration-200;
+    @apply hover:bg-gray-600 hover:border-gray-500;
+    @apply active:scale-95;
+  }
+
+  /* Botones de grupo (prioridad) */
+  .btn-group-item {
+    @apply flex-1 py-2.5 px-4 rounded-lg font-medium;
+    @apply bg-gray-700 text-gray-300;
+    @apply border border-gray-600;
+    @apply transition-all duration-200;
+    @apply hover:bg-gray-600;
+    @apply cursor-pointer;
+  }
+
+  .btn-group-item.active {
+    @apply bg-orange-500 text-white border-orange-400;
+    @apply shadow-lg shadow-orange-500/30;
+  }
+
+  /* Range slider personalizado */
+  input[type="range"] {
+    @apply w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer;
+    @apply transition-all duration-200;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    @apply appearance-none w-5 h-5 bg-orange-500 rounded-full cursor-pointer;
+    @apply transition-all duration-200;
+    @apply hover:bg-orange-400 hover:scale-110;
+    @apply shadow-lg shadow-orange-500/50;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    @apply w-5 h-5 bg-orange-500 rounded-full cursor-pointer border-0;
+    @apply transition-all duration-200;
+    @apply hover:bg-orange-400 hover:scale-110;
+  }
+
+  input[type="range"]::-webkit-slider-runnable-track {
+    @apply w-full h-2 bg-gradient-to-r from-green-500 via-yellow-500 to-red-500 rounded-lg;
+  }
+
+  input[type="range"]::-moz-range-track {
+    @apply w-full h-2 bg-gradient-to-r from-green-500 via-yellow-500 to-red-500 rounded-lg;
+  }
+
+  /* Result cards */
+  .result-card {
+    @apply text-center p-6 rounded-xl;
+    @apply bg-gradient-to-br from-gray-700 to-gray-800;
+    @apply border-2;
+    @apply transition-all duration-300;
+  }
+
+  .result-card.primary {
+    @apply border-orange-500 shadow-lg shadow-orange-500/20;
+  }
+
+  .result-card.success {
+    @apply border-green-500 shadow-lg shadow-green-500/20;
+  }
+
+  .result-card.warning {
+    @apply border-yellow-500 shadow-lg shadow-yellow-500/20;
+  }
+
+  .result-card.danger {
+    @apply border-red-500 bg-gradient-to-br from-red-900/30 to-red-800/30;
+    @apply shadow-lg shadow-red-500/20;
+  }
+
+  /* Info boxes */
+  .info-box {
+    @apply p-4 rounded-lg border-2;
+    @apply transition-all duration-200;
+  }
+
+  .info-box.success {
+    @apply bg-green-900/30 border-green-500;
+  }
+
+  .info-box.info {
+    @apply bg-blue-900/30 border-blue-500;
+  }
+
+  .info-box.warning {
+    @apply bg-yellow-900/30 border-yellow-500;
+  }
+
+  /* Badges */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold;
+    @apply transition-all duration-200;
+  }
+
+  .badge.danger {
+    @apply bg-red-500/20 text-red-400 border border-red-500;
+  }
+
+  .badge.success {
+    @apply bg-green-500/20 text-green-400 border border-green-500;
+  }
+
+  .badge.warning {
+    @apply bg-yellow-500/20 text-yellow-400 border border-yellow-500;
+  }
+}
+
+/* ============================================================================
+   UTILIDADES PERSONALIZADAS
+   ============================================================================ */
+
+@layer utilities {
+  /* Animaciones personalizadas */
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-in;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.4s ease-out;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Gradientes de texto */
+  .text-gradient-orange {
+    @apply bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-green {
+    @apply bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent;
+  }
+
+  /* Glassmorphism effect */
+  .glass {
+    @apply bg-gray-800/50 backdrop-blur-md;
+    @apply border border-gray-700/50;
+  }
+
+  /* Sombras personalizadas */
+  .shadow-glow-orange {
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
+  }
+
+  .shadow-glow-green {
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+  }
+
+  /* Transiciones suaves */
+  .transition-smooth {
+    @apply transition-all duration-300 ease-in-out;
+  }
+}
+
+/* ============================================================================
+   KEYFRAMES
+   ============================================================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================ */
+
+@media (max-width: 1024px) {
+  .card {
+    @apply p-4;
+  }
+
+  .result-card {
+    @apply p-4;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    @apply text-sm;
+  }
+
+  .card {
+    @apply p-3 rounded-lg;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    @apply text-sm py-2 px-4;
+  }
+
+  .input-field {
+    @apply text-sm py-2 px-3;
+  }
+}
+
+/* ============================================================================
+   MEJORAS DE ACCESIBILIDAD
+   ============================================================================ */
+
+/* Focus visible para navegación por teclado */
+*:focus-visible {
+  @apply outline-2 outline-offset-2 outline-orange-500;
+}
+
+/* Mejora de contraste para texto */
+.high-contrast {
+  @apply text-white;
+}
+
+/* Reducir movimiento para usuarios con preferencias de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
