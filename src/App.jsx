@@ -38,24 +38,24 @@ const RouteOptimizer = () => {
   const t = translations[language];
 
   // ===== Efecto para Recalcular Optimización =====
-  useEffect(() => {
-    // Calcular velocidad óptima usando cálculo diferencial
-    const vOpt = CalculusEngine.calculateOptimalSpeed(coeffA, coeffB, traffic);
+useEffect(() => {
+  // 1. Calcular velocidad óptima (AFECTADA por tráfico)
+  const vOpt = CalculusEngine.calculateOptimalSpeed(coeffA, coeffB, traffic);
 
-    // Calcular costo mínimo en la velocidad óptima
-    const cost = CalculusEngine.costFunction(vOpt, coeffA, coeffB);
+  // 2. Calcular costo de combustible (NO afectado por tráfico directamente)
+  // Solo depende de la velocidad óptima y los coeficientes
+  const cost = CalculusEngine.costFunction(vOpt, coeffA, coeffB);
 
-    // Calcular tiempo estimado de viaje
-    const time = CalculusEngine.calculateTime(distance, vOpt);
+  // 3. ✅ CORREGIDO: Calcular tiempo estimado
+  // SOLO depende de: distancia y velocidad
+  // NO depende del costo de combustible
+  const time = CalculusEngine.calculateTime(distance, vOpt);
 
-    // Actualizar estado con los resultados
-    setOptimalSpeed(vOpt);
-    setMinCost(cost);
-    setEstimatedTime(time);
-
-    // Generar datos para la gráfica
-    setChartData(CalculusEngine.generateChartData(coeffA, coeffB));
-  }, [distance, maxTime, coeffA, coeffB, traffic, priority]);
+  setOptimalSpeed(vOpt);
+  setMinCost(cost);
+  setEstimatedTime(time);
+  setChartData(CalculusEngine.generateChartData(coeffA, coeffB));
+}, [distance, maxTime, coeffA, coeffB, traffic, priority]);
 
   // ===== Renderizado =====
   return (

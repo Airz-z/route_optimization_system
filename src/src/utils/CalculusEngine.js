@@ -45,9 +45,10 @@ export const CalculusEngine = {
   calculateOptimalSpeed: (a, b, trafficFactor) => {
     // Aplicar fórmula de optimización: v = ∛(b/(2a))
     const vOpt = Math.pow(b / (2 * a), 1 / 3);
+    const inverseTrafficFactor = 2.2 - trafficFactor;
 
     // Ajustar por factor de tráfico
-    return vOpt * trafficFactor;
+    return vOpt * inverseTrafficFactor;
   },
 
   /**
