@@ -43,12 +43,26 @@ export const CalculusEngine = {
    * @returns {number} Velocidad óptima en km/h
    */
   calculateOptimalSpeed: (a, b, trafficFactor) => {
-    // Aplicar fórmula de optimización: v = ∛(b/(2a))
-    const vOpt = Math.pow(b / (2 * a), 1 / 3);
-    const inverseTrafficFactor = 2.2 - trafficFactor;
+    // ✅ LÍMITES DE VELOCIDAD REALISTAS
+    const MIN_SPEED = 30; // km/h - Zona escolar/residencial
+    const MAX_SPEED = 120; // km/h - Límite de autopista urbana
 
-    // Ajustar por factor de tráfico
-    return vOpt * inverseTrafficFactor;
+    // Paso 1: Calcular velocidad óptima teórica según la función de costo
+    // Derivando e igualando a cero: 2a·v - b/v² = 0
+    // Resolviendo: v = ∛(b/(2a))
+    const vTheoretical = Math.pow(b / (2 * a), 1 / 3);
+
+    // Paso 2: Ajustar por factor de tráfico inverso
+    // Factor inverso: más tráfico = menor velocidad
+    // Fórmula: 1.0 / trafficFactor
+    // - trafficFactor = 0.7 → multiplicador = 1.43 (+43%)
+    // - trafficFactor = 1.0 → multiplicador = 1.00 (sin cambio)
+    // - trafficFactor = 1.5 → multiplicador = 0.67 (-33%)
+    const inverseTrafficFactor = 1.0 / trafficFactor;
+    const vAdjusted = vTheoretical * inverseTrafficFactor;
+    
+    // Paso 3: Aplicar límites de velocidad
+    return Math.max(MIN_SPEED, Math.min(MAX_SPEED, vAdjusted));
   },
 
   /**

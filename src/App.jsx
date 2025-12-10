@@ -41,22 +41,22 @@ const RouteOptimizer = () => {
 useEffect(() => {
   // 1. Calcular velocidad óptima (AFECTADA por tráfico)
   const vOpt = CalculusEngine.calculateOptimalSpeed(coeffA, coeffB, traffic);
-
+  
   // 2. Calcular costo de combustible (NO afectado por tráfico directamente)
   // Solo depende de la velocidad óptima y los coeficientes
   const cost = CalculusEngine.costFunction(vOpt, coeffA, coeffB);
-
+  
   // 3. ✅ CORREGIDO: Calcular tiempo estimado
   // SOLO depende de: distancia y velocidad
   // NO depende del costo de combustible
   const time = CalculusEngine.calculateTime(distance, vOpt);
-
+  
   setOptimalSpeed(vOpt);
   setMinCost(cost);
   setEstimatedTime(time);
   setChartData(CalculusEngine.generateChartData(coeffA, coeffB));
 }, [distance, maxTime, coeffA, coeffB, traffic, priority]);
-
+  
   // ===== Renderizado =====
   return (
     <div className="min-h-screen bg-gray-900 text-white p-6">
@@ -115,6 +115,9 @@ useEffect(() => {
             maxTime={maxTime}
             t={t}
           />
+        </div>
+        <div className="mt-3 pt-3 border-t border-orange-500/30">
+          <p className="text-xs text-gray-500">⚡ Límites: 30-120 km/h</p>
         </div>
       </div>
     </div>
