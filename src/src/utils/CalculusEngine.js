@@ -1,5 +1,5 @@
 export const CalculusEngine = {
-  // Constantes realistas (ajustables según región)
+  // Constantes 
   FUEL_PRICE_PER_LITER: 1.2,
   BASE_CONSUMPTION: 0.08,
   DRIVER_COST_PER_HOUR: 15,
@@ -7,10 +7,6 @@ export const CalculusEngine = {
   MIN_SPEED: 30,
   MAX_SPEED: 120,
 
-  /**
-   * ✅ NUEVA: Calcula velocidad óptima SIN considerar tráfico
-   * El tráfico se aplica después para obtener velocidad real
-   */
   calculateOptimalSpeedBase: () => {
     const fuelFactor =
       0.002 *
@@ -39,7 +35,7 @@ export const CalculusEngine = {
   },
 
   /**
-   * SIMPLIFICADA: Solo calcula velocidad óptima con tráfico
+   * Solo calcula velocidad óptima con tráfico
    */
   calculateOptimalSpeed: (distance, trafficFactor) => {
     const baseSpeed = CalculusEngine.calculateOptimalSpeedBase();
@@ -93,17 +89,13 @@ export const CalculusEngine = {
   },
 
   /**
-   * ✅ Calcula tiempo basado en velocidad real (con tráfico aplicado)
+   * Calcula tiempo basado en velocidad
    */
   calculateTime: (distance, speed) => {
     if (speed <= 0) return Infinity;
     return (distance / speed) * 60;
   },
 
-  /**
-   * ✅ IMPORTANTE: Desglose de costos usa velocidad REAL (con tráfico)
-   * Esto es correcto porque el tráfico afecta cuánto tiempo trabajas
-   */
   getCostBreakdown: (v, distance) => {
     const fuelConsumptionRate =
       CalculusEngine.BASE_CONSUMPTION * (1 + 0.002 * v);
