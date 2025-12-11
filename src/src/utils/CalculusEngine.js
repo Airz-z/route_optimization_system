@@ -1,32 +1,43 @@
 export const CalculusEngine = {
-  // Constantes 
+  // Constantes (ajustables según región)
   FUEL_PRICE_PER_LITER: 1.2,
   BASE_CONSUMPTION: 0.08,
   DRIVER_COST_PER_HOUR: 15,
   VEHICLE_DEPRECIATION_PER_KM: 0.15,
-  MIN_SPEED: 30,
-  MAX_SPEED: 120,
+
+  MIN_SPEED: 20, // km/h - Tráfico muy denso, zonas escolares
+  MAX_SPEED: 80, // km/h - Máximo en promedio en una ciudad en latinoamerica
 
   calculateOptimalSpeedBase: () => {
     const fuelFactor =
       0.002 *
       CalculusEngine.BASE_CONSUMPTION *
       CalculusEngine.FUEL_PRICE_PER_LITER;
-    const vOptimal = Math.sqrt(
+
+    // Velocidad óptima teórica matemática
+    const vTheoretical = Math.sqrt(
       CalculusEngine.DRIVER_COST_PER_HOUR / fuelFactor
     );
 
     return Math.max(
       CalculusEngine.MIN_SPEED,
-      Math.min(CalculusEngine.MAX_SPEED, vOptimal)
+      Math.min(CalculusEngine.MAX_SPEED, vTheoretical)
     );
   },
 
-
   applyTraffic: (baseSpeed, trafficFactor) => {
-    // Factor inverso: más tráfico = menor velocidad
-    const inverseTrafficFactor = 1.0 / trafficFactor;
-    const adjustedSpeed = baseSpeed * inverseTrafficFactor;
+
+    let adjustmentFactor;
+
+    if (trafficFactor < 1.0) {
+      // Tráfico bajo: aumento moderado (máx 20%)
+      adjustmentFactor = 1.0 + (1.0 - trafficFactor) * 0.67;
+    } else {
+      // Tráfico alto: reducción más pronunciada
+      adjustmentFactor = 1.0 / trafficFactor;
+    }
+
+    const adjustedSpeed = baseSpeed * adjustmentFactor;
 
     return Math.max(
       CalculusEngine.MIN_SPEED,
@@ -35,7 +46,7 @@ export const CalculusEngine = {
   },
 
   /**
-   * Solo calcula velocidad óptima con tráfico
+   * Calcula velocidad óptima con tráfico aplicado
    */
   calculateOptimalSpeed: (distance, trafficFactor) => {
     const baseSpeed = CalculusEngine.calculateOptimalSpeedBase();
@@ -77,7 +88,7 @@ export const CalculusEngine = {
     return fuelDerivative + timeDerivative;
   },
 
-  generateChartData: (distance = 15.5, minV = 5, maxV = 150, step = 1) => {
+  generateChartData: (distance = 15.5, minV = 5, maxV = 120, step = 1) => {
     const data = [];
     for (let v = minV; v <= maxV; v += step) {
       data.push({
@@ -88,9 +99,6 @@ export const CalculusEngine = {
     return data;
   },
 
-  /**
-   * Calcula tiempo basado en velocidad
-   */
   calculateTime: (distance, speed) => {
     if (speed <= 0) return Infinity;
     return (distance / speed) * 60;

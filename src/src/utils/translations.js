@@ -1,3 +1,7 @@
+// translations.js
+// Sistema de traducciones ES/EN
+// ✅ ACTUALIZADO con límites realistas para Latinoamérica
+
 export const translations = {
   es: {
     title: "Optimización de Rutas",
@@ -37,7 +41,7 @@ export const translations = {
     results: "Resultados de Optimización",
     optimalSpeedTitle: "VELOCIDAD ÓPTIMA",
     minCostFuel: "Minimiza el costo total de combustible",
-    speedLimits: "Límites: 30-120 km/h",
+    speedLimits: "Límites: 20-80 km/h (urbano)",
     minCostTitle: "COSTO MÍNIMO",
     optimalFuelCost: "Costo óptimo de combustible",
     fuelCostBreakdown: "Combustible",
@@ -54,8 +58,7 @@ export const translations = {
     timeDecreaseDesc:
       "Tiempo: Disminuye con velocidad (menos horas de trabajo)",
     optimalDesc: "Óptimo: Velocidad que minimiza la suma de todos los costos",
-    trafficImpact:
-      "Tráfico: Factor multiplicador que reduce velocidad efectiva",
+    trafficImpact: "Tráfico: Reduce velocidad según congestión vial urbana",
   },
 
   en: {
@@ -96,7 +99,7 @@ export const translations = {
     results: "Optimization Results",
     optimalSpeedTitle: "OPTIMAL SPEED",
     minCostFuel: "Minimizes total fuel cost",
-    speedLimits: "Limits: 30-120 km/h",
+    speedLimits: "Limits: 20-80 km/h (urban)",
     minCostTitle: "MINIMUM COST",
     optimalFuelCost: "Optimal fuel cost",
     fuelCostBreakdown: "Fuel",
@@ -111,6 +114,6 @@ export const translations = {
     fuelIncreaseDesc: "Fuel: Increases with speed (air resistance)",
     timeDecreaseDesc: "Time: Decreases with speed (fewer work hours)",
     optimalDesc: "Optimal: Speed that minimizes the sum of all costs",
-    trafficImpact: "Traffic: Multiplier factor that reduces effective speed",
+    trafficImpact: "Traffic: Reduces speed based on urban road congestion",
   },
 };
